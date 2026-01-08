@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unseen Yala: ดินแดนใต้สุดสยาม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --primary-color: #1B4D3E; /* เขียวมรกตเข้ม */
+            --accent-color: #D4AF37; /* สีทองหรูหรา */
+            --bg-color: #F9F9F7; /* สีขาวครีม */
+            --text-color: #333333;
+            --light-text: #666666;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif; /* ฟอนต์หัวข้อแบบหรู */
+        }
+
+        /* --- Header Section --- */
+        header {
+            background: linear-gradient(rgba(27, 77, 62, 0.9), rgba(27, 77, 62, 0.8)), url('https://images.unsplash.com/photo-1590632360814-2c58a5c48737?auto=format&fit=crop&q=80'); /* Placeholder Image */
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        /* --- Infographic Stats Bar --- */
+        .stats-bar {
+            background: white;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 40px 20px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            box-shadow: var(--shadow);
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-item h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .stat-item span {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        /* --- Destinations Grid --- */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- Interactive Card Design --- */
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(27, 77, 62, 0.2);
+        }
+
+        .card-img {
+            height: 250px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
+            color: var(--light-text);
+        }
+
+        .btn-view {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .card:hover .btn-view {
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* --- Modal (Popup) --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 100; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 40px;
+            border-top: 5px solid var(--accent-color);
+            width: 80%; 
+            max-width: 800px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover { color: var(--primary-color); }
+
+        .modal-body {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .modal-img {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            background-color: #eee;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .modal-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* --- Animations --- */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .header-content h1 { font-size: 2.5rem; }
+            .stats-bar { width: 90%; gap: 20px; }
+            .modal-content { width: 95%; margin: 20% auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <p>Welcome to</p>
+            <h1>YALA</h1>
+            <p>The City of Beautiful Parks</p>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="stats-bar">
+        <div class="stat-item">
+            <i class="fas fa-cloud-sun"></i>
+            <h3>24°C</h3>
+            <span>อุณหภูมิเฉลี่ย</span>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-mountain"></i>
+            <h3>3 อำเภอ</h3>
+            <span>โซนท่องเที่ยวหลัก</span>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-car"></i>
+            <h3>1,084 กม.</h3>
+            <span>จากกรุงเทพฯ</span>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-camera"></i>
+            <h3>10+</h3>
+            <span>จุดเช็คอินยอดฮิต</span>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section-title">
+            <h2>Highlights</h2>
+            <div class="line"></div>
+            <p>สัมผัสประสบการณ์การท่องเที่ยวระดับพรีเมียมในจังหวัดยะลา</p>
+        </div>
+
+        <div class="card-grid">
+            <article class="card" onclick="openModal('skywalk')">
+                <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/202111018903e1e2474776104d411135da175782161358.jpg')">
+                    <span class="card-tag">Adventure</span>
+                </div>
+                <div class="card-content">
+                    <h3>สกายวอล์คอัยเยอร์เวง</h3>
+                    <p style="color: #777; font-size: 0.9rem; margin-top: 5px;">ทะเลหมอก 360 องศา ที่ยาวที่สุดในอาเซียน</p>
+                    <div class="card-info-row">
+                        <span><i class="far fa-clock"></i> 05:30 - 16:30</span>
+                        <span><i class="fas fa-map-marker-alt"></i> เบตง</span>
+                    </div>
+                    <a href="#" class="btn-view">ดูรายละเอียด <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card" onclick="openModal('tunnel')">
+                <div class="card-img" style="background-image: url('https://thai.tourismthailand.org/images/attraction_detail/2157-001.jpg')">
+                    <span class="card-tag">History</span>
+                </div>
+                <div class="card-content">
+                    <h3>อุโมงค์ปิยะมิตร</h3>
+                    <p style="color: #777; font-size: 0.9rem; margin-top: 5px;">ย้อนรอยประวัติศาสตร์อุโมงค์ใต้ดิน</p>
+                    <div class="card-info-row">
+                        <span><i class="far fa-clock"></i> 08:00 - 16:30</span>
+                        <span><i class="fas fa-map-marker-alt"></i> เบตง</span>
+                    </div>
+                    <a href="#" class="btn-view">ดูรายละเอียด <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card" onclick="openModal('dam')">
+                <div class="card-img" style="background-image: url('https://lh5.googleusercontent.com/p/AF1QipN3X1k8g-S_vD4B6t_qY9t_r8s_u_z_w_x_y_z_0')"> 
+                    <span class="card-tag">Nature</span>
+                </div>
+                <div class="card-content">
+                    <h3>เขื่อนบางลาง</h3>
+                    <p style="color: #777; font-size: 0.9rem; margin-top: 5px;">กุ้ยหลินเมืองไทย ล่องแพชมป่าฮาลา-บาลา</p>
+                    <div class="card-info-row">
+                        <span><i class="far fa-clock"></i> ตลอดวัน</span>
+                        <span><i class="fas fa-map-marker-alt"></i> บันนังสตา</span>
+                    </div>
+                    <a href="#" class="btn-view">ดูรายละเอียด <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modalData">
+                </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Yala Premium Travel. Designed with Elegant Style.</p>
+    </footer>
+
+    <script>
+        // ข้อมูลจำลอง (Mock Data) สำหรับ Modal
+        const attractionData = {
+            skywalk: {
+                title: "สกายวอล์คอัยเยอร์เวง (Ayerweng Skywalk)",
+                img: "https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/202111018903e1e2474776104d411135da175782161358.jpg",
+                desc: "แลนด์มาร์คใหม่ของเบตง ตั้งอยู่บนระดับความสูง 2,038 ฟุต จุดเด่นคือระเบียงทางเดินพื้นกระจกใสที่ยื่นออกไปจากฐาน ให้ความรู้สึกเหมือนเดินอยู่บนอากาศ พร้อมชมทะเลหมอกได้ตลอดทั้งปี",
+                tips: "แนะนำให้ไปช่วงเช้าตรู่ 05:30 - 07:00 น. เพื่อชมทะเลหมอกที่หนาแน่นที่สุด"
+            },
+            tunnel: {
+                title: "อุโมงค์ปิยะมิตร (Piyamit Tunnel)",
+                img: "https://thai.tourismthailand.org/images/attraction_detail/2157-001.jpg",
+                desc: "อุโมงค์ประวัติศาสตร์ที่เคยเป็นฐานที่มั่นของโจรจีนคอมมิวนิสต์มาลายา มีความยาวกว่า 1 กิโลเมตร ภายในมีห้องนอน ห้องบัญชาการ และนิทรรศการประวัติศาสตร์",
+                tips: "อากาศภายในอุโมงค์เย็นสบายตลอดปี ควรเตรียมรองเท้าที่เดินสะดวก"
+            },
+            dam: {
+                title: "เขื่อนบางลาง (Bang Lang Dam)",
+                img: "https://lh5.googleusercontent.com/p/AF1QipN3X1k8g-S_vD4B6t_qY9t_r8s_u_z_w_x_y_z_0",
+                desc: "เขื่อนอเนกประสงค์แห่งแรกของภาคใต้ กั้นแม่น้ำปัตตานี บรรยากาศร่มรื่น เหมาะแก่การล่องแพ ชมทัศนียภาพป่าฮาลา-บาลา ที่สมบูรณ์จนได้รับฉายาว่า อเมซอนแห่งอาเซียน",
+                tips: "สามารถเช่าเรือหางยาว หรือแพที่พักเพื่อค้างคืนสัมผัสธรรมชาติได้"
+            }
+        };
+
+        // Functions ควบคุม Modal
+        const modal = document.getElementById("infoModal");
+        const modalData = document.getElementById("modalData");
+
+        function openModal(id) {
+            const data = attractionData[id];
+            if(!data) return; // ถ้าไม่มีข้อมูลให้หยุด
+
+            // สร้าง HTML สำหรับแสดงใน Modal
+            modalData.innerHTML = `
+                <div class="modal-img" style="background-image: url('${data.img}');"></div>
+                <div class="modal-text">
+                    <h2 style="color: var(--primary-color); margin-bottom: 15px;">${data.title}</h2>
+                    <p style="margin-bottom: 20px;">${data.desc}</p>
+                    <div style="background: #f0f7f4; padding: 15px; border-left: 4px solid var(--accent-color);">
+                        <strong><i class="fas fa-lightbulb"></i> Travel Tip:</strong>
+                        <p>${data.tips}</p>
+                    </div>
+                </div>
+            `;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // คลิกพื้นที่นอก Modal เพื่อปิด
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
