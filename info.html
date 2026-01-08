@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT YALA | ข้อมูลจังหวัดยะลา</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- SHARED STYLES (คัดลอก Theme มาจาก index.html) --- */
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #C5A059;
+            --bg-light: #ffffff;
+            --bg-gray: #f8f9fa;
+            --text-color: #333333;
+            --text-light: #666666;
+            --glass-nav: rgba(255, 255, 255, 0.95);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; list-style: none; }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass-nav); /* หน้านี้ให้มีพื้นหลังเลยเพื่อความชัดเจน */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .logo i { color: var(--accent-color); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        /* Active State indicator */
+        .nav-links a.active { color: var(--accent-color); }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
+            background-color: var(--accent-color); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- PAGE HERO (Reduced Height) --- */
+        .page-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://upload.wikimedia.org/wikipedia/commons/e/e0/City_Pillar_Shrine_of_Yala_01.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            letter-spacing: 5px;
+        }
+        
+        .breadcrumb {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .section-padding { padding: 80px 10%; }
+        
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .section-header span {
+            display: block; width: 60px; height: 3px; background: var(--accent-color); margin: 0 auto;
+        }
+
+        /* --- MOTTO BOX --- */
+        .motto-box {
+            background-color: var(--bg-gray);
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            margin-top: -50px; /* Overlap Hero */
+            z-index: 10;
+            width: 80%;
+            margin-left: auto; margin-right: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        .motto-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            line-height: 1.8;
+            font-style: italic;
+        }
+        .quote-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* --- ZIG ZAG LAYOUT --- */
+        .zigzag-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+        .zigzag-container.reverse { flex-direction: row-reverse; }
+        
+        .zigzag-img {
+            flex: 1;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 20px 20px 0px rgba(197, 160, 89, 0.2); /* Gold Shadow Effect */
+        }
+        .zigzag-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .zigzag-img:hover img { transform: scale(1.05); }
+
+        .zigzag-content { flex: 1; }
+        .zigzag-title {
+            font-size: 2rem; margin-bottom: 20px; color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 20px;
+        }
+        .zigzag-desc { color: var(--text-light); line-height: 1.8; margin-bottom: 20px; }
+
+        /* --- SYMBOLS GRID --- */
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .symbol-item {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        .symbol-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transform: translateY(-5px);
+        }
+        .symbol-icon {
+            font-size: 3rem; color: var(--accent-color); margin-bottom: 20px;
+        }
+        .symbol-name { font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
+        .symbol-detail { color: var(--text-light); font-size: 0.9rem; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: white; padding: 60px 20px; text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 20px; color: var(--accent-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5rem; }
+            .motto-box { width: 90%; padding: 30px; }
+            .zigzag-container { flex-direction: column; gap: 30px; }
+            .zigzag-container.reverse { flex-direction: column; }
+            .zigzag-img { width: 100%; height: 250px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-location-dot"></i> YALA
+        </div>
+        <div class="nav-links">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="index.html#destinations">สถานที่ท่องเที่ยว</a>
+            <a href="info.html" class="active">ข้อมูลจังหวัด</a>
+            <a href="index.html#contact">ติดต่อเรา</a>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div>
+            <h1>ABOUT YALA</h1>
+            <div class="breadcrumb">Home / Province Info</div>
+        </div>
+    </header>
+
+    <section class="motto-box">
+        <i class="fa-solid fa-quote-left quote-icon"></i>
+        <p class="motto-text">
+            "ใต้สุดสยาม เมืองงามชายแดน"
+        </p>
+        <p style="margin-top: 15px; color: var(--accent-color); font-size: 0.9rem; letter-spacing: 1px;">คำขวัญประจำจังหวัดยะลา</p>
+    </section>
+
+    <section class="section-padding">
+        
+        <div class="zigzag-container">
+            <div class="zigzag-img">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipNqR5m3aJvoCJOeNq_cTyvPCPgX7wX8yvX4yGk=w1080-h608-p-k-no-v0" alt="Yala City Plan">
+            </div>
+            <div class="zigzag-content">
+                <h2 class="zigzag-title">ประวัติและความเป็นมา</h2>
+                <p class="zigzag-desc">
+                    ยะลา (Yala) เป็นจังหวัดในภาคใต้ของประเทศไทยที่มีความโดดเด่นทางด้านภูมิศาสตร์และวัฒนธรรม คำว่า "ยะลา" มาจากภาษามลายูท้องถิ่น "ยาลอ" แปลว่า "แห" ซึ่งเป็นภูมิประเทศของภูเขาที่โอบล้อมตัวเมือง
+                </p>
+                <p class="zigzag-desc">
+                    ยะลายังได้รับสมญานามว่าเป็น "เมืองในสวน" เนื่องจากการวางผังเมืองที่สวยงามที่สุดแห่งหนึ่งในประเทศไทย มีการจัดสรรพื้นที่สีเขียวอย่างลงตัว และเป็นจังหวัดเดียวในภาคใต้ที่ไม่ติดทะเล แต่ทดแทนด้วยความอุดมสมบูรณ์ของป่าไม้และขุนเขา
+                </p>
+            </div>
+        </div>
+
+        <div class="zigzag-container reverse">
+            <div class="zigzag-img">
+                <img src="https://thailandtourismdirectory.go.th/assets/upload/2021/11/10/202111105934661a2960f4e9a8f26038d172776c141724.jpg" alt="Nature">
+            </div>
+            <div class="zigzag-content">
+                <h2 class="zigzag-title">ภูมิศาสตร์และทรัพยากร</h2>
+                <p class="zigzag-desc">
+                    พื้นที่ส่วนใหญ่ของจังหวัดเป็นภูเขาและป่าไม้ทึบ โดยเฉพาะทางตอนใต้ซึ่งเป็นส่วนหนึ่งของเทือกเขาสันกาลาคีรี ป่าฮาลา-บาลา ที่ได้รับฉายาว่า "อเมซอนแห่งอาเซียน" เป็นแหล่งที่อยู่อาศัยของสัตว์ป่าหายาก เช่น นกเงือก
+                </p>
+                <ul style="color: var(--text-light); margin-left: 20px;">
+                    <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--accent-color);"></i> อาณาเขตทิศใต้ติดกับประเทศมาเลเซีย</li>
+                    <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--accent-color);"></i> มีเขื่อนบางลาง เป็นแหล่งน้ำสำคัญ</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--accent-color);"></i> อากาศเย็นสบายและชุ่มชื้นตลอดปี</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section-padding" style="background-color: var(--bg-gray);">
+        <div class="section-header">
+            <h2>PROVINCIAL SYMBOLS</h2>
+            <span></span>
+            <p style="margin-top: 15px; color: var(--text-light);">สัญลักษณ์ประจำจังหวัด</p>
+        </div>
+
+        <div class="symbols-grid">
+            <div class="symbol-item">
+                <i class="fa-solid fa-tree symbol-icon"></i> <h3 class="symbol-name">ต้นศรียะลา</h3>
+                <p class="symbol-detail">ต้นไม้ประจำจังหวัด (ต้นโสกเหลือง) ไม้ยืนต้นขนาดกลาง ดอกสีเหลืองสวยงาม</p>
+            </div>
+            <div class="symbol-item">
+                <i class="fa-solid fa-fan symbol-icon"></i>
+                <h3 class="symbol-name">ดอกพิกุล</h3>
+                <p class="symbol-detail">ดอกไม้ประจำจังหวัด มีกลิ่นหอมเย็น กลีบดอกเป็นจักรเล็กๆ สื่อถึงความงดงามที่ละเอียดอ่อน</p>
+            </div>
+            <div class="symbol-item">
+                <i class="fa-solid fa-dove symbol-icon"></i>
+                <h3 class="symbol-name">นกเงือก</h3>
+                <p class="symbol-detail">สัญลักษณ์แห่งความรักแท้และความอุดมสมบูรณ์ของป่าฮาลา-บาลา</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">YALA</div>
+        <p>การท่องเที่ยวแห่งประเทศไทย สำนักงานยะลา</p>
+        <p style="margin-top: 10px; color: #888; font-size: 0.8rem;">© 2024 Designed for Yala Tourism.</p>
+    </footer>
+
+</body>
+</html>
