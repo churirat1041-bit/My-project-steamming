@@ -3,135 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YALA: The Hidden Gem of South | เที่ยวยะลา</title>
+    <title>YALA LUXURY TRAVEL | ยะลา</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;700&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --primary-gold: #D4AF37;
-            --secondary-gold: #AA8C2C;
-            --bg-dark: #0f1412;
-            --bg-card: #1A2621;
-            --text-light: #F4F4F4;
-            --text-gray: #B0B3B8;
+            --primary-color: #1a1a1a;
+            --accent-color: #C5A059; /* สีทองด้าน เรียบหรู */
+            --bg-light: #ffffff;
+            --bg-gray: #f8f9fa;
+            --text-color: #333333;
+            --text-light: #666666;
+            --glass-nav: rgba(255, 255, 255, 0.95);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
+            text-decoration: none;
+            list-style: none;
         }
 
         body {
             font-family: 'Prompt', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
+            background-color: var(--bg-light);
+            color: var(--text-color);
             overflow-x: hidden;
         }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif; /* หรูหราสำหรับหัวข้อภาษาอังกฤษ */
+        /* --- NAVIGATION BAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.0); /* เริ่มต้นใส */
+            backdrop-filter: blur(0px);
+            z-index: 1000;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid transparent;
         }
-        
-        .thai-header {
-            font-family: 'Prompt', sans-serif;
-            font-weight: 600;
+
+        .navbar.scrolled {
+            background: var(--glass-nav);
+            padding: 15px 5%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff; /* สีขาวตอนอยู่บนรูป */
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.4s;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .navbar.scrolled .logo {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: var(--primary-color);
         }
 
         /* --- HERO SECTION --- */
-        header {
+        .hero {
             height: 100vh;
-            background: linear-gradient(rgba(15, 20, 18, 0.7), rgba(15, 20, 18, 0.9)), 
-                        url('https://images.unsplash.com/photo-1599554378873-6a9712a4a753?q=80&w=1920&auto=format&fit=crop'); /* ภาพทะเลหมอก (Placeholder) */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Parallax Effect */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            color: white;
+            padding: 0 20px;
         }
 
-        .hero-title {
+        .hero h1 {
+            font-family: 'Cinzel', serif;
             font-size: 5rem;
-            color: var(--primary-gold);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            animation: fadeInDown 1.5s ease;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+            animation: fadeInMove 1.5s ease;
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-top: 10px;
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
             font-weight: 300;
-            letter-spacing: 2px;
-            animation: fadeInUp 1.5s ease;
+            animation: fadeInMove 1.5s ease 0.3s backwards;
         }
 
-        .scroll-btn {
-            margin-top: 50px;
-            padding: 12px 30px;
-            border: 2px solid var(--primary-gold);
-            color: var(--primary-gold);
-            text-decoration: none;
-            transition: all 0.3s;
+        .btn-gold {
+            padding: 15px 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
             border-radius: 50px;
             font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+            animation: fadeInMove 1.5s ease 0.6s backwards;
         }
 
-        .scroll-btn:hover {
-            background: var(--primary-gold);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px var(--secondary-gold);
+        .btn-gold:hover {
+            transform: translateY(-5px);
+            background-color: #b08d4d;
         }
 
-        /* --- INFOGRAPHIC STATS --- */
-        .stats-container {
+        /* --- INFOGRAPHIC BAR --- */
+        .info-bar {
+            background-color: white;
+            padding: 60px 10%;
             display: flex;
-            justify-content: center;
-            gap: 50px;
-            padding: 80px 20px;
-            background: linear-gradient(to bottom, var(--bg-dark), var(--bg-card));
+            justify-content: space-around;
             flex-wrap: wrap;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .stat-item {
+        .info-item {
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            border-right: 1px solid #eee;
         }
 
-        .stat-item i {
-            font-size: 3rem;
-            color: var(--primary-gold);
+        .info-item:last-child {
+            border-right: none;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
             margin-bottom: 15px;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
+        .info-val {
+            font-size: 2rem;
             font-weight: 700;
+            color: var(--primary-color);
             display: block;
         }
 
-        .stat-desc {
-            color: var(--text-gray);
+        .info-label {
+            color: var(--text-light);
             font-size: 0.9rem;
         }
 
-        /* --- ATTRACTIONS GRID --- */
-        .attractions {
-            padding: 50px 10%;
+        /* --- CONTENT SECTION --- */
+        .section-padding {
+            padding: 100px 10%;
         }
 
         .section-header {
@@ -140,308 +221,371 @@
         }
 
         .section-header h2 {
-            font-size: 3rem;
-            color: var(--primary-gold);
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
 
-        .grid-container {
+        .section-header span {
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 0 auto;
+        }
+
+        /* --- CARD GRID --- */
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .card {
-            background: var(--bg-card);
-            border-radius: 15px;
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
             cursor: pointer;
             position: relative;
-            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border-color: var(--primary-gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .card-image-wrapper {
+            height: 280px;
+            overflow: hidden;
         }
 
         .card-img {
-            height: 250px;
-            background-color: #333;
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .card-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--primary-gold);
-            color: var(--bg-dark);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        .card:hover .card-img {
+            transform: scale(1.1);
         }
 
         .card-content {
-            padding: 25px;
+            padding: 30px;
         }
 
-        .card h3 {
+        .category {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .card-title {
             font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--text-light);
+            margin: 10px 0;
+            color: var(--primary-color);
         }
 
-        .card p {
-            color: var(--text-gray);
+        .card-desc {
+            color: var(--text-light);
             font-size: 0.95rem;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        .btn-more {
-            color: var(--primary-gold);
-            text-decoration: none;
+        .card-btn {
+            color: var(--primary-color);
             font-weight: 600;
-            display: inline-flex;
+            font-size: 0.9rem;
+            display: flex;
             align-items: center;
+            gap: 8px;
+            transition: gap 0.3s;
         }
 
-        .btn-more:hover i {
-            transform: translateX(5px);
+        .card:hover .card-btn {
+            gap: 15px;
+            color: var(--accent-color);
         }
 
-        .btn-more i {
-            margin-left: 8px;
-            transition: transform 0.3s;
-        }
-
-        /* --- MODAL (POPUP) --- */
-        .modal {
-            display: none;
+        /* --- MODAL --- */
+        .modal-overlay {
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
             justify-content: center;
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s;
         }
 
-        .modal-content {
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: 15px;
+        .modal-box {
+            background: white;
             width: 90%;
-            max-width: 600px;
-            position: relative;
-            border: 1px solid var(--primary-gold);
-            transform: scale(0.8);
+            max-width: 800px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column; /* Mobile first */
+            transform: scale(0.9);
             transition: transform 0.3s;
         }
 
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: var(--text-gray);
-            font-size: 28px;
+        .modal-header {
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .close-btn {
+            font-size: 1.5rem;
             cursor: pointer;
+            color: #333;
         }
 
-        .close-modal:hover {
-            color: var(--primary-gold);
+        .modal-body {
+            padding: 0 40px 40px 40px;
+        }
+
+        .modal-body h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
         }
 
         /* --- FOOTER --- */
         footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 20px;
             text-align: center;
-            padding: 40px;
-            background-color: #000;
-            color: var(--text-gray);
-            font-size: 0.8rem;
-            margin-top: 50px;
-            border-top: 1px solid #333;
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
         }
-        @keyframes fadeInUp {
+
+        /* Animation Keyframes */
+        @keyframes fadeInMove {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Responsive */
+        @media (min-width: 768px) {
+            .modal-box {
+                flex-direction: row;
+            }
+            .modal-img {
+                width: 40%;
+                background-color: #eee;
+                background-size: cover;
+                background-position: center;
+            }
+            .modal-text {
+                width: 60%;
+                padding: 40px;
+            }
         }
-
-        .modal.show {
-            opacity: 1;
-        }
-        .modal.show .modal-content {
-            transform: scale(1);
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; } /* ซ่อนเมนูในมือถือเพื่อความง่าย */
+            .info-bar { margin-top: 0; border-radius: 0; }
+            .info-item { border-right: none; border-bottom: 1px solid #eee; }
         }
 
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="hero-title">YALA</h1>
-        <p class="hero-subtitle thai-header">เสน่ห์ปลายด้ามขวาน งามตระการตาใต้สุดสยาม</p>
-        <a href="#attractions" class="scroll-btn thai-header">ค้นพบสถานที่ <i class="fas fa-chevron-down"></i></a>
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-location-dot"></i> YALA
+        </div>
+        <div class="nav-links">
+            <a href="#">หน้าหลัก</a>
+            <a href="#destinations">สถานที่ท่องเที่ยว</a>
+            <a href="#info">ข้อมูลจังหวัด</a>
+            <a href="#contact">ติดต่อเรา</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>YALA</h1>
+        <p>เสน่ห์แห่งปลายด้ามขวาน อัญมณีที่ซ่อนอยู่ท่ามกลางขุนเขาและสายหมอก</p>
+        <button class="btn-gold" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})">
+            เริ่มออกเดินทาง
+        </button>
     </header>
 
-    <section class="stats-container" id="stats">
-        <div class="stat-item">
-            <i class="fas fa-mountain"></i>
-            <span class="stat-number">2,035</span>
-            <span class="stat-desc thai-header">ฟุต เหนือระดับน้ำทะเล (อัยเยอร์เวง)</span>
+    <section class="info-bar" id="info">
+        <div class="info-item">
+            <i class="fa-solid fa-cloud-sun info-icon"></i>
+            <span class="info-val">24°C</span>
+            <span class="info-label">อุณหภูมิเฉลี่ยเย็นสบาย</span>
         </div>
-        <div class="stat-item">
-            <i class="fas fa-cloud-sun"></i>
-            <span class="stat-number">18-25°C</span>
-            <span class="stat-desc thai-header">อุณหภูมิเฉลี่ยตลอดปี</span>
+        <div class="info-item">
+            <i class="fa-solid fa-mountain info-icon"></i>
+            <span class="info-val">2,038</span>
+            <span class="info-label">ฟุต ความสูง Skywalk</span>
         </div>
-        <div class="stat-item">
-            <i class="fas fa-tree"></i>
-            <span class="stat-number">Green</span>
-            <span class="stat-desc thai-header">เมืองในสวนที่ผังเมืองดีที่สุด</span>
+        <div class="info-item">
+            <i class="fa-solid fa-map info-icon"></i>
+            <span class="info-val">8</span>
+            <span class="info-label">อำเภอ แหล่งวัฒนธรรม</span>
+        </div>
+        <div class="info-item">
+            <i class="fa-solid fa-camera info-icon"></i>
+            <span class="info-val">Top 5</span>
+            <span class="info-label">เมืองผังเมืองสวยที่สุด</span>
         </div>
     </section>
 
-    <section class="attractions" id="attractions">
+    <section class="section-padding" id="destinations" style="background-color: var(--bg-gray);">
         <div class="section-header">
-            <h2 class="thai-header">แลนด์มาร์คห้ามพลาด</h2>
-            <p style="color: var(--text-gray);" class="thai-header">สัมผัสประสบการณ์เหนือระดับกับธรรมชาติที่สวยงาม</p>
+            <h2>DESTINATIONS</h2>
+            <span></span>
+            <p style="margin-top: 15px; color: var(--text-light);">คัดสรรสถานที่ที่ดีที่สุดสำหรับประสบการณ์การพักผ่อนของคุณ</p>
         </div>
 
-        <div class="grid-container">
+        <div class="grid">
             <div class="card" onclick="openModal('skywalk')">
-                <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2021/11/10/202111105934661a2960f4e9a8f26038d172776c141724.jpg');">
-                    <span class="card-tag">Highlight</span>
+                <div class="card-image-wrapper">
+                    <img src="https://thailandtourismdirectory.go.th/assets/upload/2021/11/10/202111105934661a2960f4e9a8f26038d172776c141724.jpg" alt="Skywalk" class="card-img">
                 </div>
                 <div class="card-content">
-                    <h3 class="thai-header">สกายวอล์คอัยเยอร์เวง</h3>
-                    <p class="thai-header">ชมทะเลหมอก 360 องศา บนทางเดินกระจกที่ยาวที่สุดในอาเซียน สัมผัสเมฆหมอกได้เพียงปลายนิ้ว</p>
-                    <a href="javascript:void(0)" class="btn-more thai-header">อ่านเพิ่มเติม <i class="fas fa-arrow-right"></i></a>
+                    <span class="category">Adventure</span>
+                    <h3 class="card-title">สกายวอล์คอัยเยอร์เวง</h3>
+                    <p class="card-desc">สัมผัสทะเลหมอก 360 องศา บนแลนด์มาร์คแห่งใหม่ของเบตง ที่จะทำให้คุณรู้สึกเหมือนเดินอยู่บนก้อนเมฆ</p>
+                    <div class="card-btn">อ่านรายละเอียด <i class="fa-solid fa-arrow-right"></i></div>
                 </div>
             </div>
 
             <div class="card" onclick="openModal('tunnel')">
-                <div class="card-img" style="background-image: url('https://thai.tourismthailand.org/images/attraction/large/1460-1.jpg');">
-                    <span class="card-tag">History</span>
+                <div class="card-image-wrapper">
+                    <img src="https://thai.tourismthailand.org/images/attraction/large/1460-1.jpg" alt="Tunnel" class="card-img">
                 </div>
                 <div class="card-content">
-                    <h3 class="thai-header">อุโมงค์ปิยะมิตร</h3>
-                    <p class="thai-header">ย้อนรอยประวัติศาสตร์ในอุโมงค์ดินที่เคยเป็นฐานปฏิบัติการ ท่ามกลางป่าดิบชื้นที่สมบูรณ์</p>
-                    <a href="javascript:void(0)" class="btn-more thai-header">อ่านเพิ่มเติม <i class="fas fa-arrow-right"></i></a>
+                    <span class="category">History</span>
+                    <h3 class="card-title">อุโมงค์ปิยะมิตร</h3>
+                    <p class="card-desc">อุโมงค์ดินประวัติศาสตร์ที่ซ่อนตัวในป่าทึบ เคยเป็นฐานที่มั่นที่แข็งแกร่ง ปัจจุบันคือพิพิธภัณฑ์ธรรมชาติ</p>
+                    <div class="card-btn">อ่านรายละเอียด <i class="fa-solid fa-arrow-right"></i></div>
                 </div>
             </div>
 
-            <div class="card" onclick="openModal('dam')">
-                <div class="card-img" style="background-image: url('https://mpics.mgronline.com/pics/Images/562000008681101.JPEG');">
-                    <span class="card-tag">Nature</span>
+            <div class="card" onclick="openModal('garden')">
+                <div class="card-image-wrapper">
+                    <img src="https://lh5.googleusercontent.com/p/AF1QipN38h8Wf4Hq4Z2Z2Gz8z8z8z8z8z8z8z8z8z8z8" alt="Garden" class="card-img" style="background-color: #ddd;"> 
+                    <img src="https://ik.imagekit.io/tvlk/blog/2022/10/shutterstock_1468644686.jpg?tr=dpr-2,w-675" alt="Winter Flowers" class="card-img">
                 </div>
                 <div class="card-content">
-                    <h3 class="thai-header">เขื่อนบางลาง</h3>
-                    <p class="thai-header">ล่องเรือชมป่าฮาลา-บาลา "อเมซอนแห่งอาเซียน" ความเงียบสงบที่หรูหราที่สุดคือธรรมชาติ</p>
-                    <a href="javascript:void(0)" class="btn-more thai-header">อ่านเพิ่มเติม <i class="fas fa-arrow-right"></i></a>
+                    <span class="category">Nature</span>
+                    <h3 class="card-title">สวนไม้ดอกเมืองหนาว</h3>
+                    <p class="card-desc">ความงามแห่งดอกไม้นานาพันธุ์ท่ามกลางหุบเขาเบตง บรรยากาศเหมือนอยู่ต่างประเทศ</p>
+                    <div class="card-btn">อ่านรายละเอียด <i class="fa-solid fa-arrow-right"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" class="thai-header" style="color: var(--primary-gold); margin-bottom: 15px;">ชื่อสถานที่</h2>
-            <p id="modalDesc" class="thai-header" style="color: var(--text-gray);">รายละเอียด...</p>
-            <br>
-            <button class="scroll-btn" style="margin-top: 20px; font-size: 0.8rem;" onclick="closeModal()">ปิดหน้าต่าง</button>
+    <footer id="contact">
+        <div class="footer-logo">YALA</div>
+        <p>การท่องเที่ยวแห่งประเทศไทย สำนักงานยะลา</p>
+        <p style="margin-top: 10px; color: #888; font-size: 0.8rem;">&copy; 2024 Designed for Yala Tourism.</p>
+    </footer>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <div class="modal-img" id="modalImg" style="background-image: url('');"></div>
+            <div class="modal-text">
+                <div style="text-align: right;">
+                    <i class="fa-solid fa-times close-btn" onclick="closeModal()"></i>
+                </div>
+                <h2 id="modalTitle">Title</h2>
+                <p id="modalDesc" style="color: #666; line-height: 1.8;">Description</p>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Yala Tourism Infographic Project. Design by Gemini Expert.</p>
-    </footer>
-
     <script>
-        // Data สำหรับ Modal
-        const attractionData = {
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Modal Data
+        const content = {
             skywalk: {
-                title: "สกายวอล์คอัยเยอร์เวง (Skywalk Aiyerweng)",
-                desc: "ตั้งอยู่บนยอดเขาไมโครเวฟ มีความสูงจากระดับน้ำทะเล 2,038 ฟุต ไฮไลท์คือทางเดินพื้นกระจกใสที่ยื่นออกไปจากหน้าผา ทำให้คุณมองเห็นทะเลหมอกได้รอบทิศทาง 360 องศา ควรมาถึงก่อนพระอาทิตย์ขึ้นเพื่อบรรยากาศที่สวยงามที่สุด (ค่าเข้าชม: คนไทย 40 บาท, ชาวต่างชาติ 200 บาท)"
+                title: "สกายวอล์คอัยเยอร์เวง",
+                desc: "แลนด์มาร์คสำคัญของอำเภอเบตง จังหวัดยะลา ตั้งอยู่บนระดับความสูง 2,038 ฟุต จุดเด่นคือระเบียงทางเดินยื่นออกไปจากฐาน หน้าผา เป็นพื้นกระจกใส สามารถมองเห็นพื้นป่าด้านล่างได้ชัดเจน ไฮไลท์คือการชมทะเลหมอกยามเช้าที่หนาแน่นและสวยงามที่สุดแห่งหนึ่งในภาคใต้",
+                img: "https://thailandtourismdirectory.go.th/assets/upload/2021/11/10/202111105934661a2960f4e9a8f26038d172776c141724.jpg"
             },
             tunnel: {
-                title: "อุโมงค์ปิยะมิตร (Piyamit Tunnel)",
-                desc: "ในอดีตเคยเป็นฐานที่มั่นของโจรจีนคอมมิวนิสต์มลายา (จคม.) อุโมงค์มีความยาวประมาณ 1 กิโลเมตร ภายในมีห้องนอน ห้องประชุม และห้องเก็บเสบียง ปัจจุบันเป็นแหล่งท่องเที่ยวทางประวัติศาสตร์ที่ล้อมรอบด้วยต้นไม้ใหญ่ร่มรื่น"
+                title: "อุโมงค์ปิยะมิตร",
+                desc: "ตั้งอยู่ที่บ้านปิยะมิตร 1 ตำบลตาเนาะแมเราะ สร้างขึ้นเมื่อ พ.ศ. 2519 โดยขบวนการโจรจีนคอมมิวนิสต์มลายา (จคม.) เพื่อใช้เป็นฐานปฏิบัติการและหลบภัยทางอากาศ อุโมงค์มีความยาวประมาณ 1 กิโลเมตร ปัจจุบันเปิดให้นักท่องเที่ยวเข้าชมเส้นทางประวัติศาสตร์",
+                img: "https://thai.tourismthailand.org/images/attraction/large/1460-1.jpg"
             },
-            dam: {
-                title: "เขื่อนบางลาง (Bang Lang Dam)",
-                desc: "เขื่อนอเนกประสงค์แห่งแรกของภาคใต้ กั้นแม่น้ำปัตตานี บริเวณเหนือเขื่อนมีทัศนียภาพสวยงาม เหมาะแก่การล่องแพหรือนั่งเรือชมป่าฮาลา-บาลา ซึ่งเป็นป่าดิบชื้นที่สมบูรณ์ที่สุดแห่งหนึ่งของไทย และอาจได้พบนกเงือกสัตว์สัญลักษณ์ของความรัก"
+            garden: {
+                title: "สวนไม้ดอกเมืองหนาวเบตง",
+                desc: "ตั้งอยู่ในโครงการไม้ดอกเมืองหนาวอันเนื่องมาจากพระราชดำริ อำเภอเบตง เนื่องจากพื้นที่อยู่สูงกว่าระดับน้ำทะเล ทำให้มีอากาศเย็นสบายตลอดปี สามารถปลูกดอกไม้เมืองหนาวได้หลากหลายสายพันธุ์ เช่น ลิลลี่ เบญจมาศ กุหลาบ บรรยากาศสวยงามเหมือนยุโรป",
+                img: "https://ik.imagekit.io/tvlk/blog/2022/10/shutterstock_1468644686.jpg?tr=dpr-2,w-675"
             }
         };
 
-        // Modal Logic
-        const modal = document.getElementById('infoModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDesc = document.getElementById('modalDesc');
+        const modal = document.getElementById('modal');
+        const mTitle = document.getElementById('modalTitle');
+        const mDesc = document.getElementById('modalDesc');
+        const mImg = document.getElementById('modalImg');
 
         function openModal(id) {
-            const data = attractionData[id];
-            if(data) {
-                modalTitle.innerText = data.title;
-                modalDesc.innerText = data.desc;
-                modal.style.display = "flex";
+            if(content[id]) {
+                mTitle.innerText = content[id].title;
+                mDesc.innerText = content[id].desc;
+                // ใน Desktop จะเปลี่ยน background image ด้านซ้าย
+                if(window.innerWidth >= 768) {
+                    mImg.style.backgroundImage = `url('${content[id].img}')`;
+                    mImg.style.display = 'block';
+                } else {
+                    mImg.style.display = 'none';
+                }
+                
+                modal.style.display = 'flex';
                 setTimeout(() => {
-                    modal.classList.add('show');
-                }, 10); // Small delay for animation
+                    modal.style.opacity = '1';
+                    document.querySelector('.modal-box').style.transform = 'scale(1)';
+                }, 10);
             }
         }
 
         function closeModal() {
-            modal.classList.remove('show');
+            modal.style.opacity = '0';
+            document.querySelector('.modal-box').style.transform = 'scale(0.9)';
             setTimeout(() => {
-                modal.style.display = "none";
+                modal.style.display = 'none';
             }, 300);
         }
 
-        // Close when clicking outside
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-
-        // Scroll Animation Logic
-        const observerOptions = {
-            threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.stat-item').forEach(el => {
-            observer.observe(el);
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
         });
 
     </script>
